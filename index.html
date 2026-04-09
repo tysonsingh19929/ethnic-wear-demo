@@ -1,0 +1,201 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  .page{font-family:var(--font-sans);color:var(--color-text-primary);max-width:640px;margin:0 auto;padding:0 0 2rem}
+  .hero{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:2rem 1.5rem 1.5rem;margin-bottom:1rem;border:0.5px solid var(--color-border-tertiary);text-align:center}
+  .badge{display:inline-block;background:var(--color-background-warning);color:#633806;font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;letter-spacing:0.04em;margin-bottom:1rem}
+  .hero h1{font-size:22px;font-weight:500;line-height:1.35;margin-bottom:.5rem}
+  .hero p{font-size:14px;color:var(--color-text-secondary);line-height:1.6;max-width:420px;margin:0 auto}
+  .section{margin-bottom:1rem}
+  .section-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:.6rem;padding:0 2px}
+  .pain-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .pain-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+  .pain-card .icon{width:28px;height:28px;border-radius:8px;background:var(--color-background-danger);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+  .pain-card .icon svg{width:14px;height:14px;stroke:var(--color-text-danger);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pain-card h3{font-size:13px;font-weight:500;margin-bottom:3px}
+  .pain-card p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+  .services-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .svc{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px;display:flex;gap:10px;align-items:flex-start}
+  .svc-dot{width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;margin-top:4px}
+  .svc h3{font-size:13px;font-weight:500;margin-bottom:2px}
+  .svc p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+  .demo-card{background:var(--color-background-primary);border:2px solid var(--color-border-info);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  .demo-card .left h3{font-size:15px;font-weight:500;margin-bottom:4px}
+  .demo-card .left p{font-size:13px;color:var(--color-text-secondary)}
+  .demo-btn{background:var(--color-background-info);color:#042C53;font-size:13px;font-weight:500;padding:10px 18px;border-radius:var(--border-radius-md);border:none;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+  .pricing-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .pkg{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+  .pkg.featured{border:2px solid var(--color-border-info)}
+  .pkg-badge{font-size:10px;font-weight:500;background:var(--color-background-info);color:#0C447C;padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:6px}
+  .pkg h3{font-size:13px;font-weight:500;margin-bottom:2px}
+  .pkg .price{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:6px 0 2px}
+  .pkg .price span{font-size:12px;font-weight:400;color:var(--color-text-secondary)}
+  .pkg ul{list-style:none;padding:0;margin-top:8px}
+  .pkg ul li{font-size:12px;color:var(--color-text-secondary);line-height:1.9;display:flex;gap:5px;align-items:flex-start}
+  .pkg ul li:before{content:"";width:5px;height:5px;border-radius:50%;background:#1D9E75;flex-shrink:0;margin-top:6px}
+  .proof-strip{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:1rem 1.25rem}
+  .proof-strip .stats{display:flex;gap:0;justify-content:space-around;text-align:center}
+  .proof-strip .stat-val{font-size:20px;font-weight:500}
+  .proof-strip .stat-lbl{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+  .divider{width:1px;background:var(--color-border-tertiary)}
+  .cta-block{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:1.5rem;text-align:center}
+  .cta-block h2{font-size:18px;font-weight:500;margin-bottom:.4rem}
+  .cta-block p{font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem}
+  .wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-size:14px;font-weight:500;padding:12px 24px;border-radius:var(--border-radius-md);text-decoration:none;border:none;cursor:pointer}
+  .wa-icon{width:18px;height:18px}
+  .footer-note{text-align:center;font-size:12px;color:var(--color-text-tertiary);margin-top:.75rem}
+  .step-row{display:flex;gap:10px}
+  .step-num{width:28px;height:28px;border-radius:50%;border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-secondary);flex-shrink:0}
+  .step-body{padding-top:4px}
+  .step-body h3{font-size:13px;font-weight:500;margin-bottom:2px}
+  .step-body p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+  .step-connector{width:1px;height:12px;background:var(--color-border-tertiary);margin-left:14px}
+</style>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="badge">For Indian ethnic wear boutiques</div>
+    <h1>Your followers are ready to buy.<br>Are you ready to sell?</h1>
+    <p style="margin-top:.75rem">Most boutiques with 25k+ followers are still taking orders over WhatsApp DMs. We fix that — with a beautiful website, automated replies, and payment links that work while you sleep.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The problem right now</div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>100+ DMs a day</h3>
+        <p>Same questions — price, size, availability — answered manually every single day</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></div>
+        <h3>No way to collect payment</h3>
+        <p>Customers drop off when asked to bank transfer. No UPI link, no checkout</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h3>Followers can't find you</h3>
+        <p>Zero Google presence. People searching "bridal lehenga Mumbai" never find your page</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Lost sales every night</h3>
+        <p>Customers browse at midnight. Without automation, orders are lost before morning</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">What we build for you</div>
+    <div class="services-grid">
+      <div class="svc"><div class="svc-dot"></div><div><h3>Custom website</h3><p>Designed for your brand — product catalogue, lookbook, story, and checkout</p></div></div>
+      <div class="svc"><div class="svc-dot"></div><div><h3>WhatsApp automation</h3><p>Auto-replies to common questions, order confirmations, and payment links</p></div></div>
+      <div class="svc"><div class="svc-dot"></div><div><h3>Razorpay / UPI checkout</h3><p>Customers pay directly on the site or via a link — no bank transfer friction</p></div></div>
+      <div class="svc"><div class="svc-dot"></div><div><h3>Instagram shop setup</h3><p>Tag products in your posts and Reels so followers can buy in one tap</p></div></div>
+      <div class="svc"><div class="svc-dot"></div><div><h3>Digital lookbook</h3><p>A shareable PDF catalogue for wedding season, festive drops, and bridal edits</p></div></div>
+      <div class="svc"><div class="svc-dot"></div><div><h3>Google visibility</h3><p>SEO setup + Google Business profile so new customers can find you organically</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="demo-card">
+      <div class="left">
+        <h3>See a live demo</h3>
+        <p>Built for a high-end ethnic wear boutique — just like yours</p>
+      </div>
+      <a class="demo-btn" href="https://house-of-jodha.vercel.app/" target="_blank">View demo site</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Packages</div>
+    <div class="pricing-grid">
+      <div class="pkg">
+        <h3>Starter</h3>
+        <div class="price">₹18,000 <span>one-time</span></div>
+        <ul>
+          <li>5-page website</li>
+          <li>Product catalogue</li>
+          <li>WhatsApp order button</li>
+          <li>Mobile-first design</li>
+          <li>1 month support</li>
+        </ul>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-badge">Most popular</div>
+        <h3>Growth</h3>
+        <div class="price">₹32,000 <span>one-time</span></div>
+        <ul>
+          <li>Full website</li>
+          <li>Razorpay checkout</li>
+          <li>WhatsApp bot setup</li>
+          <li>Instagram shop</li>
+          <li>Digital lookbook</li>
+          <li>3 months support</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <h3>Premium</h3>
+        <div class="price">₹55,000 <span>one-time</span></div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Custom branding</li>
+          <li>SEO setup</li>
+          <li>Google Business</li>
+          <li>Festive landing pages</li>
+          <li>6 months support</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--color-text-tertiary);margin-top:8px;text-align:center">Monthly maintenance retainer available from ₹3,000/month</p>
+  </div>
+
+  <div class="section">
+    <div class="proof-strip">
+      <div class="stats">
+        <div><div class="stat-val">48 hrs</div><div class="stat-lbl">avg. delivery time</div></div>
+        <div class="divider"></div>
+        <div><div class="stat-val">100%</div><div class="stat-lbl">mobile-first design</div></div>
+        <div class="divider"></div>
+        <div><div class="stat-val">3×</div><div class="stat-lbl">more conversions vs DMs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">How it works</div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px 18px;display:flex;flex-direction:column;gap:0">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-body"><h3>30-min call</h3><p>We learn your brand, your collection, and how you currently sell</p></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-body"><h3>We build in 48 hours</h3><p>You share photos and product info — we handle everything else</p></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-body"><h3>You review and approve</h3><p>One round of revisions included — we refine until it's perfect</p></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div class="step-body"><h3>Go live</h3><p>Your site is live, WhatsApp is automated, and orders start coming in</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <h2>Ready to turn followers into customers?</h2>
+    <p>Reply to this message or tap below — let's talk about your boutique</p>
+    <button class="wa-btn" onclick="sendPrompt('Help me write the WhatsApp DM message to send to boutiques along with this pitch')">
+      <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Write my DM script ↗
+    </button>
+    <div class="footer-note" style="margin-top:1rem">[Your name] · [Your contact] · [Your city]</div>
+  </div>
+
+</div>

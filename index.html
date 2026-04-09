@@ -1,201 +1,649 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grow your boutique online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  .page{font-family:var(--font-sans);color:var(--color-text-primary);max-width:640px;margin:0 auto;padding:0 0 2rem}
-  .hero{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:2rem 1.5rem 1.5rem;margin-bottom:1rem;border:0.5px solid var(--color-border-tertiary);text-align:center}
-  .badge{display:inline-block;background:var(--color-background-warning);color:#633806;font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;letter-spacing:0.04em;margin-bottom:1rem}
-  .hero h1{font-size:22px;font-weight:500;line-height:1.35;margin-bottom:.5rem}
-  .hero p{font-size:14px;color:var(--color-text-secondary);line-height:1.6;max-width:420px;margin:0 auto}
-  .section{margin-bottom:1rem}
-  .section-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:.6rem;padding:0 2px}
-  .pain-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
-  .pain-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
-  .pain-card .icon{width:28px;height:28px;border-radius:8px;background:var(--color-background-danger);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
-  .pain-card .icon svg{width:14px;height:14px;stroke:var(--color-text-danger);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .pain-card h3{font-size:13px;font-weight:500;margin-bottom:3px}
-  .pain-card p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-  .services-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
-  .svc{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px;display:flex;gap:10px;align-items:flex-start}
-  .svc-dot{width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;margin-top:4px}
-  .svc h3{font-size:13px;font-weight:500;margin-bottom:2px}
-  .svc p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-  .demo-card{background:var(--color-background-primary);border:2px solid var(--color-border-info);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-  .demo-card .left h3{font-size:15px;font-weight:500;margin-bottom:4px}
-  .demo-card .left p{font-size:13px;color:var(--color-text-secondary)}
-  .demo-btn{background:var(--color-background-info);color:#042C53;font-size:13px;font-weight:500;padding:10px 18px;border-radius:var(--border-radius-md);border:none;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
-  .pricing-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px}
-  .pkg{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
-  .pkg.featured{border:2px solid var(--color-border-info)}
-  .pkg-badge{font-size:10px;font-weight:500;background:var(--color-background-info);color:#0C447C;padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:6px}
-  .pkg h3{font-size:13px;font-weight:500;margin-bottom:2px}
-  .pkg .price{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:6px 0 2px}
-  .pkg .price span{font-size:12px;font-weight:400;color:var(--color-text-secondary)}
-  .pkg ul{list-style:none;padding:0;margin-top:8px}
-  .pkg ul li{font-size:12px;color:var(--color-text-secondary);line-height:1.9;display:flex;gap:5px;align-items:flex-start}
-  .pkg ul li:before{content:"";width:5px;height:5px;border-radius:50%;background:#1D9E75;flex-shrink:0;margin-top:6px}
-  .proof-strip{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:1rem 1.25rem}
-  .proof-strip .stats{display:flex;gap:0;justify-content:space-around;text-align:center}
-  .proof-strip .stat-val{font-size:20px;font-weight:500}
-  .proof-strip .stat-lbl{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
-  .divider{width:1px;background:var(--color-border-tertiary)}
-  .cta-block{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:1.5rem;text-align:center}
-  .cta-block h2{font-size:18px;font-weight:500;margin-bottom:.4rem}
-  .cta-block p{font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem}
-  .wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-size:14px;font-weight:500;padding:12px 24px;border-radius:var(--border-radius-md);text-decoration:none;border:none;cursor:pointer}
-  .wa-icon{width:18px;height:18px}
-  .footer-note{text-align:center;font-size:12px;color:var(--color-text-tertiary);margin-top:.75rem}
-  .step-row{display:flex;gap:10px}
-  .step-num{width:28px;height:28px;border-radius:50%;border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-secondary);flex-shrink:0}
-  .step-body{padding-top:4px}
-  .step-body h3{font-size:13px;font-weight:500;margin-bottom:2px}
-  .step-body p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-  .step-connector{width:1px;height:12px;background:var(--color-border-tertiary);margin-left:14px}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1208;
+    --ink-soft: #5a4e3c;
+    --ink-muted: #9c8e7a;
+    --parchment: #faf7f2;
+    --parchment-dark: #f0ebe0;
+    --gold: #c9973a;
+    --gold-light: #e8c97a;
+    --gold-pale: #fdf4e3;
+    --border: rgba(180, 155, 100, 0.25);
+    --border-strong: rgba(180, 155, 100, 0.5);
+    --green: #3a6b4a;
+    --green-pale: #edf5f0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', serif; }
+
+  /* ── Ornament lines ── */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+  .ornament::before, .ornament::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 64px 24px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,151,58,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,151,58,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold-pale);
+    border: 0.5px solid var(--gold-light);
+    color: #7a5a1a;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 8vw, 58px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    max-width: 480px;
+    margin: 0 auto 32px;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-demo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: var(--parchment);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-demo-btn:hover { background: #2d2315; transform: translateY(-1px); }
+  .hero-demo-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: flex;
+    border-top: 0.5px solid var(--border-strong);
+    border-bottom: 0.5px solid var(--border-strong);
+    background: var(--parchment-dark);
+  }
+  .stat {
+    flex: 1;
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 0.5px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--ink-muted);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 56px 24px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .section + .section { padding-top: 0; }
+
+  .section-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 300;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  /* ── PAIN CARDS ── */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .pain-card {
+    background: #fff;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: #e8c9c9;
+    opacity: 0.7;
+  }
+  .pain-icon {
+    width: 32px;
+    height: 32px;
+    background: #fdf0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .pain-icon svg { width: 15px; height: 15px; stroke: #c25a5a; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .pain-card h3 { font-size: 13px; font-weight: 500; margin-bottom: 4px; color: var(--ink); }
+  .pain-card p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; font-weight: 300; }
+
+  /* ── SERVICES ── */
+  .services-list { display: flex; flex-direction: column; gap: 1px; border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .svc-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    background: #fff;
+    transition: background 0.15s;
+  }
+  .svc-row:hover { background: var(--gold-pale); }
+  .svc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold);
+    font-weight: 300;
+    min-width: 28px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .svc-row h3 { font-size: 14px; font-weight: 500; margin-bottom: 3px; color: var(--ink); }
+  .svc-row p { font-size: 13px; color: var(--ink-soft); font-weight: 300; line-height: 1.5; }
+
+  /* ── DEMO HIGHLIGHT ── */
+  .demo-highlight {
+    background: var(--ink);
+    border-radius: 12px;
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 0 24px;
+  }
+  .demo-highlight h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 4px;
+  }
+  .demo-highlight p { font-size: 13px; color: #a89880; font-weight: 300; }
+  .demo-link {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 11px 22px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .demo-link:hover { background: var(--gold-light); }
+
+  /* ── PRICING ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .pkg {
+    background: #fff;
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 16px;
+    position: relative;
+  }
+  .pkg.featured {
+    border: 1.5px solid var(--gold);
+    background: var(--gold-pale);
+  }
+  .pkg-best {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+  .pkg-name { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-muted); margin-bottom: 6px; font-weight: 500; }
+  .pkg-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .pkg-price span { font-size: 12px; font-family: 'DM Sans', sans-serif; color: var(--ink-muted); font-weight: 300; }
+  .pkg-divider { height: 0.5px; background: var(--border-strong); margin: 14px 0; }
+  .pkg ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .pkg ul li { font-size: 12px; color: var(--ink-soft); font-weight: 300; display: flex; gap: 7px; align-items: flex-start; line-height: 1.4; }
+  .pkg ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 5px; }
+  .retainer-note { font-size: 12px; color: var(--ink-muted); text-align: center; margin-top: 12px; font-weight: 300; }
+
+  /* ── HOW IT WORKS ── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step-row { display: flex; gap: 16px; align-items: flex-start; }
+  .step-left { display: flex; flex-direction: column; align-items: center; }
+  .step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0.5px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+    background: #fff;
+  }
+  .step-line { width: 0.5px; flex: 1; background: var(--border); min-height: 24px; margin: 4px 0; }
+  .step-content { padding: 6px 0 28px; }
+  .step-content h3 { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .step-content p { font-size: 13px; color: var(--ink-soft); font-weight: 300; line-height: 1.55; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--parchment-dark);
+    border-top: 0.5px solid var(--border-strong);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 300;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .cta-section p { font-size: 14px; color: var(--ink-soft); font-weight: 300; margin-bottom: 28px; }
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 16px 32px;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .wa-btn:hover { background: #1ebe5c; transform: translateY(-1px); }
+  .wa-btn svg { width: 18px; height: 18px; fill: #fff; }
+  .cta-sub { font-size: 12px; color: var(--ink-muted); margin-top: 14px; font-weight: 300; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 20px 24px;
+    text-align: center;
+    border-top: 0.5px solid var(--border);
+  }
+  footer p { font-size: 12px; color: var(--ink-muted); font-weight: 300; }
+  footer strong { color: var(--ink-soft); font-weight: 500; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    height: 0.5px;
+    background: var(--border);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge { animation: fadeUp 0.5s ease both; }
+  .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-demo-btn { animation: fadeUp 0.5s 0.3s ease both; }
+
+  @media (max-width: 480px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .stats-strip { flex-wrap: wrap; }
+    .stat { min-width: 50%; border-right: none; border-bottom: 0.5px solid var(--border); }
+    .demo-highlight { flex-direction: column; text-align: center; margin: 0 16px; }
+  }
 </style>
+</head>
+<body>
 
-<div class="page">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">For Indian ethnic wear boutiques · 25k+ followers</div>
+  <h1>Your followers are ready to buy.<br><em>Are you ready to sell?</em></h1>
+  <p class="hero-sub">Most boutiques with 25k+ followers are still taking orders over WhatsApp DMs. We build beautiful websites, automated replies, and payment systems that work while you sleep.</p>
+  <a href="https://house-of-jodha.vercel.app/" target="_blank" class="hero-demo-btn">
+    View live demo
+    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+  </a>
+</section>
 
-  <div class="hero">
-    <div class="badge">For Indian ethnic wear boutiques</div>
-    <h1>Your followers are ready to buy.<br>Are you ready to sell?</h1>
-    <p style="margin-top:.75rem">Most boutiques with 25k+ followers are still taking orders over WhatsApp DMs. We fix that — with a beautiful website, automated replies, and payment links that work while you sleep.</p>
-  </div>
-
-  <div class="section">
-    <div class="section-label">The problem right now</div>
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3>100+ DMs a day</h3>
-        <p>Same questions — price, size, availability — answered manually every single day</p>
-      </div>
-      <div class="pain-card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></div>
-        <h3>No way to collect payment</h3>
-        <p>Customers drop off when asked to bank transfer. No UPI link, no checkout</p>
-      </div>
-      <div class="pain-card">
-        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-        <h3>Followers can't find you</h3>
-        <p>Zero Google presence. People searching "bridal lehenga Mumbai" never find your page</p>
-      </div>
-      <div class="pain-card">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>Lost sales every night</h3>
-        <p>Customers browse at midnight. Without automation, orders are lost before morning</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">What we build for you</div>
-    <div class="services-grid">
-      <div class="svc"><div class="svc-dot"></div><div><h3>Custom website</h3><p>Designed for your brand — product catalogue, lookbook, story, and checkout</p></div></div>
-      <div class="svc"><div class="svc-dot"></div><div><h3>WhatsApp automation</h3><p>Auto-replies to common questions, order confirmations, and payment links</p></div></div>
-      <div class="svc"><div class="svc-dot"></div><div><h3>Razorpay / UPI checkout</h3><p>Customers pay directly on the site or via a link — no bank transfer friction</p></div></div>
-      <div class="svc"><div class="svc-dot"></div><div><h3>Instagram shop setup</h3><p>Tag products in your posts and Reels so followers can buy in one tap</p></div></div>
-      <div class="svc"><div class="svc-dot"></div><div><h3>Digital lookbook</h3><p>A shareable PDF catalogue for wedding season, festive drops, and bridal edits</p></div></div>
-      <div class="svc"><div class="svc-dot"></div><div><h3>Google visibility</h3><p>SEO setup + Google Business profile so new customers can find you organically</p></div></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="demo-card">
-      <div class="left">
-        <h3>See a live demo</h3>
-        <p>Built for a high-end ethnic wear boutique — just like yours</p>
-      </div>
-      <a class="demo-btn" href="https://house-of-jodha.vercel.app/" target="_blank">View demo site</a>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Packages</div>
-    <div class="pricing-grid">
-      <div class="pkg">
-        <h3>Starter</h3>
-        <div class="price">₹18,000 <span>one-time</span></div>
-        <ul>
-          <li>5-page website</li>
-          <li>Product catalogue</li>
-          <li>WhatsApp order button</li>
-          <li>Mobile-first design</li>
-          <li>1 month support</li>
-        </ul>
-      </div>
-      <div class="pkg featured">
-        <div class="pkg-badge">Most popular</div>
-        <h3>Growth</h3>
-        <div class="price">₹32,000 <span>one-time</span></div>
-        <ul>
-          <li>Full website</li>
-          <li>Razorpay checkout</li>
-          <li>WhatsApp bot setup</li>
-          <li>Instagram shop</li>
-          <li>Digital lookbook</li>
-          <li>3 months support</li>
-        </ul>
-      </div>
-      <div class="pkg">
-        <h3>Premium</h3>
-        <div class="price">₹55,000 <span>one-time</span></div>
-        <ul>
-          <li>Everything in Growth</li>
-          <li>Custom branding</li>
-          <li>SEO setup</li>
-          <li>Google Business</li>
-          <li>Festive landing pages</li>
-          <li>6 months support</li>
-        </ul>
-      </div>
-    </div>
-    <p style="font-size:12px;color:var(--color-text-tertiary);margin-top:8px;text-align:center">Monthly maintenance retainer available from ₹3,000/month</p>
-  </div>
-
-  <div class="section">
-    <div class="proof-strip">
-      <div class="stats">
-        <div><div class="stat-val">48 hrs</div><div class="stat-lbl">avg. delivery time</div></div>
-        <div class="divider"></div>
-        <div><div class="stat-val">100%</div><div class="stat-lbl">mobile-first design</div></div>
-        <div class="divider"></div>
-        <div><div class="stat-val">3×</div><div class="stat-lbl">more conversions vs DMs</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">How it works</div>
-    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px 18px;display:flex;flex-direction:column;gap:0">
-      <div class="step-row">
-        <div class="step-num">1</div>
-        <div class="step-body"><h3>30-min call</h3><p>We learn your brand, your collection, and how you currently sell</p></div>
-      </div>
-      <div class="step-connector"></div>
-      <div class="step-row">
-        <div class="step-num">2</div>
-        <div class="step-body"><h3>We build in 48 hours</h3><p>You share photos and product info — we handle everything else</p></div>
-      </div>
-      <div class="step-connector"></div>
-      <div class="step-row">
-        <div class="step-num">3</div>
-        <div class="step-body"><h3>You review and approve</h3><p>One round of revisions included — we refine until it's perfect</p></div>
-      </div>
-      <div class="step-connector"></div>
-      <div class="step-row">
-        <div class="step-num">4</div>
-        <div class="step-body"><h3>Go live</h3><p>Your site is live, WhatsApp is automated, and orders start coming in</p></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-block">
-    <h2>Ready to turn followers into customers?</h2>
-    <p>Reply to this message or tap below — let's talk about your boutique</p>
-    <button class="wa-btn" onclick="sendPrompt('Help me write the WhatsApp DM message to send to boutiques along with this pitch')">
-      <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Write my DM script ↗
-    </button>
-    <div class="footer-note" style="margin-top:1rem">[Your name] · [Your contact] · [Your city]</div>
-  </div>
-
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><div class="stat-val">48h</div><div class="stat-lbl">avg. delivery</div></div>
+  <div class="stat"><div class="stat-val">3×</div><div class="stat-lbl">more conversions</div></div>
+  <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">mobile-first</div></div>
+  <div class="stat"><div class="stat-val">₹0</div><div class="stat-lbl">upfront commitment</div></div>
 </div>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="section-tag">The problem right now</div>
+  <h2 class="section-title">Your DMs are costing you sales</h2>
+  <p class="section-sub">Every unanswered message is a lost customer. Every manual reply is time you could spend on your craft.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>100+ DMs a day</h3>
+      <p>Same questions — price, size, availability — answered manually every single day</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <h3>No easy way to pay</h3>
+      <p>Customers drop off when asked to bank transfer. No UPI link, no checkout, lost sale</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <h3>Invisible on Google</h3>
+      <p>People searching "bridal lehenga Mumbai" never find your page — only your competitors</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>Lost sales overnight</h3>
+      <p>Customers browse at midnight. Without automation, those orders are lost by morning</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="section-tag">What we build for you</div>
+  <h2 class="section-title">Everything you need,<br>nothing you don't</h2>
+  <p class="section-sub">A complete setup — not just a website. Built specifically for ethnic wear boutiques.</p>
+  <div class="services-list">
+    <div class="svc-row">
+      <div class="svc-num">01</div>
+      <div><h3>Custom website</h3><p>Designed around your brand — product catalogue, lookbook, story, and checkout in one beautiful place</p></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-num">02</div>
+      <div><h3>WhatsApp automation</h3><p>Auto-replies to common questions, order confirmations, and payment links — while you focus on your craft</p></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-num">03</div>
+      <div><h3>Razorpay / UPI checkout</h3><p>Customers pay directly on the site or via a single link — no bank transfer friction, no lost sales</p></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-num">04</div>
+      <div><h3>Instagram shop setup</h3><p>Tag products in your posts and Reels so your 25k+ followers can buy in one tap</p></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-num">05</div>
+      <div><h3>Digital lookbook</h3><p>A shareable catalogue for wedding season, festive drops, and bridal edits — updated every season</p></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-num">06</div>
+      <div><h3>Google visibility</h3><p>SEO setup + Google Business profile so new customers find you when they're ready to buy</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO HIGHLIGHT -->
+<div class="demo-highlight">
+  <div>
+    <h3>See a live example</h3>
+    <p>Built for a high-end ethnic wear boutique — just like yours</p>
+  </div>
+  <a href="https://house-of-jodha.vercel.app/" target="_blank" class="demo-link">Open live demo →</a>
+</div>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="section-tag">Packages</div>
+  <h2 class="section-title">Simple, transparent pricing</h2>
+  <p class="section-sub">No hidden costs. Pick what you need today, upgrade anytime.</p>
+  <div class="pricing-grid">
+    <div class="pkg">
+      <div class="pkg-name">Starter</div>
+      <div class="pkg-price">₹12,000 <span>one-time</span></div>
+      <div class="pkg-divider"></div>
+      <ul>
+        <li>5-page website</li>
+        <li>Product catalogue</li>
+        <li>WhatsApp order button</li>
+        <li>Mobile-first design</li>
+        <li>1 month support</li>
+      </ul>
+    </div>
+    <div class="pkg featured">
+      <div class="pkg-best">Most popular</div>
+      <div class="pkg-name">Growth</div>
+      <div class="pkg-price">₹20,000 <span>one-time</span></div>
+      <div class="pkg-divider"></div>
+      <ul>
+        <li>Full website</li>
+        <li>Razorpay checkout</li>
+        <li>WhatsApp bot setup</li>
+        <li>Instagram shop</li>
+        <li>Digital lookbook</li>
+        <li>3 months support</li>
+      </ul>
+    </div>
+    <div class="pkg">
+      <div class="pkg-name">Premium</div>
+      <div class="pkg-price">₹32,000 <span>one-time</span></div>
+      <div class="pkg-divider"></div>
+      <ul>
+        <li>Everything in Growth</li>
+        <li>Custom branding</li>
+        <li>SEO + Google setup</li>
+        <li>Festive landing pages</li>
+        <li>City-specific SEO</li>
+        <li>6 months support</li>
+      </ul>
+    </div>
+  </div>
+  <p class="retainer-note">Monthly maintenance retainer available from ₹3,000/month</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-tag">The process</div>
+  <h2 class="section-title">From zero to live<br>in 48 hours</h2>
+  <p class="section-sub">We've done this before. You just share your photos and we handle everything else.</p>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <h3>30-minute call</h3>
+        <p>We learn your brand, your collection, and how you currently sell — no lengthy forms</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <h3>You share, we build</h3>
+        <p>Send us your product photos and details — we design and develop everything in 48 hours</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <h3>Review and refine</h3>
+        <p>One round of revisions included — we adjust until it feels exactly like your brand</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">4</div>
+      </div>
+      <div class="step-content" style="padding-bottom: 0;">
+        <h3>Go live</h3>
+        <p>Your site is live, WhatsApp is automated, payments are set up — orders start coming in</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="ornament" style="max-width:300px;margin:0 auto 28px">Ready to start</div>
+  <h2>Let's turn your followers<br>into customers</h2>
+  <p>Reply to this message or tap below — let's talk about your boutique</p>
+  <a href="https://wa.me/919967670497?text=Hi%20Nikhil!%20I%20saw%20your%20pitch%20and%20I%27m%20interested%20in%20learning%20more%20about%20the%20website%20package%20for%20my%20boutique." class="wa-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chat on WhatsApp
+  </a>
+  <p class="cta-sub">No commitment required — just a friendly chat about your boutique</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Nikhil Singh</strong> · +91 99676 70497 · Mumbai</p>
+  <p style="margin-top:6px;">Specialising in Indian ethnic wear boutiques &nbsp;·&nbsp; <a href="https://house-of-jodha.vercel.app/" target="_blank" style="color:var(--gold);text-decoration:none;">View demo site</a></p>
+</footer>
+
+</body>
+</html>
